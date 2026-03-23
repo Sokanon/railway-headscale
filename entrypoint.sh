@@ -13,6 +13,12 @@ if [ -z "$HEADSCALE_SERVER_URL" ] && [ -n "$RAILWAY_PUBLIC_DOMAIN" ]; then
   HEADSCALE_SERVER_URL="https://${RAILWAY_PUBLIC_DOMAIN}"
 fi
 
+if [ -z "$HEADSCALE_SERVER_URL" ]; then
+  echo "ERROR: No server URL configured."
+  echo "Either set HEADSCALE_SERVER_URL or generate a public domain in Railway service settings."
+  exit 1
+fi
+
 # Default base domain for MagicDNS
 HEADSCALE_BASE_DOMAIN="${HEADSCALE_BASE_DOMAIN:-headscale.net}"
 
